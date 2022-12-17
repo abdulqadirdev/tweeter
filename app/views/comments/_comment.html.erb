@@ -1,0 +1,27 @@
+<div class='p-4 border-b' id="<%= dom_id(comment) %>">
+ <div class='flex space-x-3 items-start'>
+   <%= profile_image(comment.user) %>
+    <div class='flex-1'>
+        <p class='font-bold'>
+        <%= link_to comment.user.name, profile_path(comment.user), class:"hover:underline" %> 
+        </p>
+        <div class='prose prose-lg'><%= comment.body %></div>
+    </div>
+ </div>
+ <ul class='-ml-3 flex space-x-14 items-start justify-center list-none'>
+     <%
+=begin%>
+ <li> <%= link_to "comments #{tweet.comments.count ||= 0 }",tweet %></li> 
+<%
+=end%>
+     <%
+=begin%>
+ <li><a href='#'>like</a></li> 
+<%
+=end%>
+     <% if user_signed_in? && comment.user == current_user %>
+        <li>
+         <%= button_to "dlt", tweet_comment_path(comment.tweet, comment), method: :delete, form: { data: {turbo_confirm: 'Are you sure'}} %></li> 
+     <% end %>
+   </ul>
+</div>

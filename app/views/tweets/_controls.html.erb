@@ -1,0 +1,10 @@
+<ul class='-ml-3 flex space-x-14 items-start justify-start list-none'>
+     <li> <%= link_to "comments #{tweet.comments.count ||= 0 }",tweet %></li>
+     <li><a href='#'>like</a></li>
+     <% if user_signed_in? && tweet.user == current_user %>
+        <li>
+         <%= button_to "dlt", tweet_path(tweet), method: :delete, form: { data: {turbo_confirm: 'Are you sure'}} %>
+    <% else %>         
+        <li><%= button_to "retweet 3", retweet_tweet_path(tweet), method: :post %></li>
+     <% end %>
+   </ul>

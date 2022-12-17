@@ -1,0 +1,16 @@
+<div class='mb-8'>
+    <%= render "form" %>
+</div>
+
+<%= turbo_frame_tag 'tweets', class: 'divide-y' do %>
+   <% @tweets.each do |tweet| %>
+    <% puts tweet.tweet_type.parameterize %>
+        <%= render "tweets/#{tweet.tweet_type.parameterize}", tweet: tweet %>
+    <% end %>
+<% end %>
+
+<%= turbo_frame_tag "empty" do %>
+  <% if @tweets.none? %>
+    <%= render "empty" %>
+  <% end %>
+<% end %>

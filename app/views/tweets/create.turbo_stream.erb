@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "tweets" do %>
+  <%= render "tweet", tweet: @tweet %>
+<% end %>
+<%= turbo_stream.update "empty" do %>
+  <%= render "empty" %>
+<% end %>
